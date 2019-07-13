@@ -1,0 +1,83 @@
+<% include nav.ejs %>
+<%if(data1.status == false){ %>
+    <br>
+    <div class="container">
+            <div class="row">
+                <div class="col s3"></div>
+                    <div class="center col s12 m6">
+                      <div class="card blue-grey darken-1"  style="border-radius : 25px;">
+                        <div class="card-content white-text">
+                          <span class="card-title">Home Loan</span>
+                          <p>Please note that the rates offered by the bank varies with respect to the duration of your loan</p>
+                          <form id="HLform" method="POST" action="/HLapply">
+                                <input name="principle" type="number" min="0" placeholder="Principle">
+                                <input id="time" name="time" type="number" min="0" placeholder="Duration in number of years">
+                                <label>The rate will be computed by the system automatically.<br>
+                                    <ul>
+                                        <li>Time:0-2 rate:5%</li>
+                                        <li>Time:2-4 rate:7%</li>
+                                        <li>Time:4+ rate:10%</li>
+                                    </ul>
+                                </label>
+                                <input id="HLrate" class="hide" name="rate" type="number" placeholder="Rate">
+                            </form>
+                            <button class="btn" onclick="rate()" style="backgound-colour : #607D8B">Submit</button>
+
+                        
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </div>
+<% } %>
+
+<%if(data1.status == true) { %>
+    <h3><b>Your Home Loan details.</b></h3>
+    <p>Principle : <%= data1.principle %>
+        <br>Rate : <%=data1.rate %> 
+        <br>Duration : <%=data1.time%> 
+        <br> Monthly Dues : <%=data1.due%>
+        <br> Your next payment is due on : <%=data1.date%>
+    </p>
+        <form action="/HLpayment" method="POST">
+            <div class="input-field col s12">
+                <input class="hide" type="number" name="due" value="<%=data1.due%>">
+                <select name="opt" required>
+                  <option value="" disabled selected>Payment Options</option>
+                  <option value="1">Savings</option>
+                  <option value="2">Current</option>
+                </select>
+                
+            </div>
+            <button class="btn" type="submit">Make payment</button>
+        </form>
+    
+
+    <%}%>
+
+
+<script>
+    var date  = new Date();
+    var todayMonth = date.getMonth();
+    var dueDate = new Date((new Date(date.getFullYear(), todayMonth+1,1))-1)
+    document.getElementById("dueDate").innerHTML = ("Due date : "+ dueDate);
+    function rate(){
+        
+        var time =  document.getElementById("time").value;
+        var rate = 0;
+        
+        if(time > 0 && time <=2){
+            rate = 5;
+        }
+        else if(time > 2 && time <=4 ){
+            rate = 7;
+        }
+        else if(time > 4){
+            rate = 10;
+        }
+        document.getElementById("HLrate").value = rate;
+        //window.alert(document.getElementById("time").value + "  "+time+ " " +rate);
+        document.getElementById("HLform").submit();
+    }
+</script>
+<% include foot.ejs %>

@@ -1,0 +1,16 @@
+<% include nav.ejs %>
+<form method="POST" action="/currentbalance">
+    <div class="row">
+        <h2>Current Account</h2>
+        <div class="input-field col s6">
+            <input placeholder="Enter amount" id="first_name" name="amount" type="number" min="0" class="validate">
+            <label for="first_name">Add Money</label>
+          </div>
+          
+    
+    <div class="input-field col s6">
+        <button type="submit"><a class="waves-effect waves-light btn"><i class="material-icons right">library_add</i>Add</a></button>
+        </div>
+    </div>
+    </form>
+<% include foot.ejs %>

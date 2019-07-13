@@ -1,0 +1,78 @@
+
+</div>
+</div>
+<div id="complaint" class="modal">
+  <form action="/regComplaint" method="POST">  
+    <div class="modal-content">
+      <h4>Register a complaint</h4>
+      
+      <input type="text" name="title" placeholder="Title of the Complaint" />
+      <input type="text" name="body" placeholder="Description of the complaint">
+      
+    </div>
+    <div class="modal-footer">
+      <button class="modal-action modal-close waves-effect waves-green btn-flat" type="submit">submit</button>
+    </div>
+  </form>
+</div>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+  
+ <!--<footer class="page-footer blue-grey">
+        <div class="container">
+          <div class="row">
+          </div>
+        </div>
+        <div class="footer-copyright">
+          <div class="container">
+          © 2014 Copyright Text
+          <a class="grey-text text-lighten-4 right" href="#" onclick="signout()">LOGOUT</a>
+          </div>
+        </div>
+      </footer>
+
+    -->
+</body>
+<script type="text/javascript">
+  $(document).ready(function(){
+    $(".button-collapse").sideNav();
+    $('.modal').modal();
+    $('.dropdown-button').dropdown({
+      inDuration: 300,
+      outDuration: 225,
+      constrainWidth: false, // Does not change width of dropdown to that of the activator
+      hover: false, // Activate on hover
+      gutter: 100, // Spacing from edge
+      belowOrigin: true, // Displays dropdown below the button
+      //alignment: 'left', // Displays dropdown with edge aligned to the left of button
+      stopPropagation: false // Stops event propagation
+    });
+    $('ul.tabs').tabs( {
+      swipeable: true
+    });
+    
+    $('select').material_select();
+    $('.datepicker').pickadate({
+        selectMonths: true, // Creates a dropdown to control month
+        selectYears: 76, // Creates a dropdown of 15 years to control year,
+        today: 'Today',
+        clear: 'Clear',
+        close: 'Ok',
+        closeOnSelect: false, // Close upon selecting a date,
+        max:true
+      });
+  
+
+  });
+</script>
+<script src="https://www.gstatic.com/firebasejs/4.9.0/firebase.js"></script>
+<script src="https://www.gstatic.com/firebasejs/4.9.1/firebase-firestore.js"></script>
+
+<script src="js/dash.js"></script>
+<script>
+    var user = firebase.auth().currentUser;
+  </script>
+
+</html>
+  
